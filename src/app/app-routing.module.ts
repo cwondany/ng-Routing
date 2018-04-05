@@ -8,6 +8,7 @@ import {UsersComponent} from './users/users.component';
 import {UserComponent} from './users/user/user.component';
 import {ServerComponent} from './servers/server/server.component';
 import {AuthGuard} from './auth-guard.service';
+import {CanDeactivateGuard} from './servers/edit-server/can-deactivate-guard.service';
 
 const appRoutes: Routes = [ // localhost:4200/users
   {path: '', component: HomeComponent},
@@ -24,7 +25,8 @@ const appRoutes: Routes = [ // localhost:4200/users
     component: ServersComponent,
     children: [
       {path: ':id', component: ServerComponent},
-      {path: ':id/edit', component: EditServerComponent},
+      {path: ':id/edit', component: EditServerComponent,
+      canDeactivate: [CanDeactivateGuard]},
     ]
   },
   {path: 'not-found', component: PageNotFoundComponent},
